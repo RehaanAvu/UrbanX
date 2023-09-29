@@ -1,0 +1,64 @@
+import java.util.Random;
+import java.util.Scanner;
+
+class City {
+    private int population;
+    private int greenSpaces;
+    private int pollution;
+    private int resilience;
+
+    public City() {
+        population = 1000;
+        greenSpaces = 10;
+        pollution = 0;
+        resilience = 50;
+    }
+
+    public void developCity() {
+        System.out.println("Your city is growing!");
+        Random random = new Random();
+        population += random.nextInt(51) + 50;
+        greenSpaces += random.nextInt(6) + 1;
+        pollution += random.nextInt(11);
+        resilience -= random.nextInt(6) + 1;
+    }
+
+    public void displayStats() {
+        System.out.println("Population: " + population);
+        System.out.println("Green Spaces: " + greenSpaces);
+        System.out.println("Pollution: " + pollution);
+        System.out.println("Resilience: " + resilience);
+    }
+}
+
+public class SustainableCityGame {
+    public static void main(String[] args) {
+        City city = new City();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nOptions:");
+            System.out.println("1. Develop the city");
+            System.out.println("2. View city stats");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    city.developCity();
+                    break;
+                case 2:
+                    city.displayStats();
+                    break;
+                case 3:
+                    System.out.println("Exiting the game. Goodbye!");
+                    scanner.close();
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
